@@ -1,2 +1,2 @@
 # slashnew_stream
-Back-end for www.slashnew.com
+Back-end for http://slashnew.com
