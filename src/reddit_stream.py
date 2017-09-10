@@ -25,15 +25,19 @@ class Reddit_Stream:
     def stream_stdout(self, subreddit_name):
         subreddit = self.reddit.subreddit(subreddit_name)
         for submission in subreddit.stream.submissions():
+            print(dir(submission))
             print(str(submission.subreddit))
         return 0
 
     def stream_queue(self, subreddit_name, shared_queue):
         subreddit = self.reddit.subreddit(subreddit_name)
         for submission in subreddit.stream.submissions():
-            shared_queue.put(str(submission.subreddit))
+            shared_queue.put(submission)
         return 0
 
 if __name__ == '__main__':
+    from dotenv import load_dotenv
+    dotenv_path = os.path.join(os.path.dirname(__file__), '../.env')
+    load_dotenv(dotenv_path)
     rs = Reddit_Stream()
     rs.stream_stdout('all')

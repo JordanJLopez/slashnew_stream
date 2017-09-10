@@ -39,24 +39,24 @@ class Slashnew_Stream:
             last_over_18 = submission.over_18
             last_created = str(submission.created)
 
-            self.meteor_subreddits.update_one({'name': last_subreddit, 'time': time.strftime("%d/%m/%Y")},
+            self.meteor_subreddits.update_one({'name': last_subreddit, 'time': time.strftime("%m/%d/%Y")},
                                                         {'$inc': {'count': 1},
                                                          '$set': {'last_title': last_title,
                                                                   'last_author': last_author,
                                                                   'last_shortlink': last_shortlink,
                                                                   'last_over_18': last_over_18,
                                                                   'last_subreddit': last_subreddit,
-                                                                  'last_timestamp': time.strftime("%d/%m/%Y %H/%m/%s")}},
+                                                                  'last_timestamp': time.strftime("%m/%d/%Y %H/%m/%s")}},
                                                         upsert=True)
             # Increment grand total count
-            self.meteor_subreddits.update_one({'name': 'all', 'time': time.strftime("%d/%m/%Y")},
+            self.meteor_subreddits.update_one({'name': 'all', 'time': time.strftime("%m/%d/%Y")},
                                                         {'$inc': {'count': 1},
                                                          '$set': {'last_title':   last_title,
                                                                   'last_author':   last_author,
                                                                   'last_shortlink':   last_shortlink,
                                                                   'last_over_18':    last_over_18,
                                                                   'last_subreddit': last_subreddit,
-                                                                  'last_timestamp': time.strftime("%d/%m/%Y %H:%M:%S")}},
+                                                                  'last_timestamp': time.strftime("%m/%d/%Y %H:%M:%S")}},
                                                         upsert=True)
 
             counter += 1
